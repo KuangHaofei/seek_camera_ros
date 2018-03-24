@@ -1,0 +1,8 @@
+prefix=/home/kuang/workspace/robotics/ROS/seek/catkin_ws/install
+
+Name: seek_ros
+Description: Description of seek_ros
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/kuang/workspace/robotics/ROS/seek/catkin_ws/install/lib 
+Requires: 

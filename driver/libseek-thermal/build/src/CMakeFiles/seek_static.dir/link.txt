@@ -1,0 +1,2 @@
+/usr/bin/ar qc libseek_static.a  CMakeFiles/seek_static.dir/SeekCam.cpp.o CMakeFiles/seek_static.dir/SeekDevice.cpp.o CMakeFiles/seek_static.dir/SeekThermal.cpp.o CMakeFiles/seek_static.dir/SeekThermalPro.cpp.o
+/usr/bin/ranlib libseek_static.a

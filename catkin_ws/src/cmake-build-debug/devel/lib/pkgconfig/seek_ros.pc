@@ -1,8 +1,0 @@
-prefix=/home/kuang/workspace/robotics/ROS/seek/catkin_ws/src/cmake-build-debug/devel
-
-Name: seek_ros
-Description: Description of seek_ros
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/kuang/workspace/robotics/ROS/seek/catkin_ws/src/cmake-build-debug/devel/lib 
-Requires: 

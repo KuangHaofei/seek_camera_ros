@@ -1,2 +1,0 @@
-seek_ros
--DCATKIN_DEVEL_PREFIX=/home/kuang/workspace/robotics/ROS/seek/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/kuang/workspace/robotics/ROS/seek/catkin_ws/install -G Unix Makefiles

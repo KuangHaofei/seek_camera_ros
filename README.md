@@ -8,6 +8,11 @@ This is a ROS package for transfer Seek Compact Pro camera image to ROS message
 ## Camera driver
 We use [libseek-thermal](https://github.com/maartenvds/libseek-thermal) as camera driver, their github page show the usage method.
 
+Note: Before you connect your camera to computer by using usb port, you have to write a udev rule(I have putted it on the package, file name is: seek.rules):
+```
+sudo cp seek.rules /etc/udev
+```
+
 ## The usage of ROS package
 - Create an catkin workspace and download the package
   ```

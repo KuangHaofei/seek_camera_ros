@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<launch>
+
+    <!-- run pointcloud_to_laserscan node -->
+    <node pkg="seek_ros" type="seek_ros_node" name="seek_ros"></node>
+
+</launch>

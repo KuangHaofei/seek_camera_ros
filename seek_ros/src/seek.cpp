@@ -133,9 +133,9 @@ int main(int argc, char **argv) {
 
         find_largest_region(image, binary);
 
-        cv::imshow("image", image);
-        cv::imwrite("/home/kuang/workspace/robotics/ROS/seek_ws/src/seek_camera_ros/seek_ros/test.jpg",image);
-        cv::waitKey(1);
+        // cv::imshow("image", image);
+        // cv::imwrite("/home/kuang/workspace/robotics/ROS/seek_ws/src/seek_camera_ros/seek_ros/test.jpg",image);
+        // cv::waitKey(1);
 
         sensor_msgs::ImagePtr msg_detected = cv_bridge::CvImage(std_msgs::Header(), "bgr8", image).toImageMsg();
 

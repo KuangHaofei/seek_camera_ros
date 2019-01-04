@@ -27,7 +27,7 @@ cv::Mat makebinary(cv::Mat image, int threshold) {
     return result;
 }
 
-void find_largest_region(cv::Mat imgOriginal, cv::Mat imgThresholded) {
+cv::Rect find_largest_region(cv::Mat imgOriginal, cv::Mat imgThresholded) {
 /*
  * Input: imgOriginal is the source image which never been processed
  *        imgThresholded is binary image
@@ -78,7 +78,7 @@ void find_largest_region(cv::Mat imgOriginal, cv::Mat imgThresholded) {
 
     cv::Mat image_roi = imgOriginal(maxRect);
 
-    // return maxRect;
+    return maxRect;
 }
 
 
@@ -122,7 +122,6 @@ int main(int argc, char **argv) {
 
         char szName[200] = {'\0'};
 
-        cv::Mat image,dstImage;
         cv::Mat gray;
         image = cv_ptr->image;
 
@@ -131,15 +130,32 @@ int main(int argc, char **argv) {
 
         cv::Mat binary = makebinary(gray, threshold);
 
-        find_largest_region(image, binary);
+        cv::Rect maxRect = find_largest_region(image, binary);
 
-        // cv::imshow("image", image);
-        // cv::imwrite("/home/kuang/workspace/robotics/ROS/seek_ws/src/seek_camera_ros/seek_ros/test.jpg",image);
-        // cv::waitKey(1);
+//        cv::imshow("image", image);
+//        cv::imwrite("/home/kuanghf/workspace/Robotics/ROS/seek_ws/src/seek_camera_ros/seek_ros/test.jpg",image);
+//        cv::waitKey(1);
 
         sensor_msgs::ImagePtr msg_detected = cv_bridge::CvImage(std_msgs::Header(), "bgr8", image).toImageMsg();
 
-        pub.publish(msg_detected);
+        double count = 0;
+        double num = maxRect.width * maxRect.height;
+        for (int i = maxRect.x; i < maxRect.x + maxRect.width; ++i)
+        {
+            for (int j = maxRect.y; j < maxRect.y + maxRect.height; ++j) {
+               count += gray.at<uchar>(i, j);
+            }
+        }
+
+        double mean_value = count / num;
+
+        std::cout << mean_value << std::endl;
+
+        if (mean_value > 115)
+        {
+            pub.publish(msg_detected);
+        }
+
         ros::spinOnce();
         loop_rate.sleep();
     }

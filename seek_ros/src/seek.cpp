@@ -120,17 +120,17 @@ int main(int argc, char **argv) {
             return 0;
         }
 
-        char szName[200] = {'\0'};
+        // char szName[200] = {'\0'};
 
-        cv::Mat gray;
+        // cv::Mat gray;
         image = cv_ptr->image;
 
-        int threshold = 121;
-        cv::cvtColor(image, gray, CV_BGR2GRAY);
+        // int threshold = 121;
+        // cv::cvtColor(image, gray, CV_BGR2GRAY);
 
-        cv::Mat binary = makebinary(gray, threshold);
+        // cv::Mat binary = makebinary(gray, threshold);
 
-        cv::Rect maxRect = find_largest_region(image, binary);
+        // cv::Rect maxRect = find_largest_region(image, binary);
 
 //        cv::imshow("image", image);
 //        cv::imwrite("/home/kuanghf/workspace/Robotics/ROS/seek_ws/src/seek_camera_ros/seek_ros/test.jpg",image);
@@ -138,24 +138,26 @@ int main(int argc, char **argv) {
 
         sensor_msgs::ImagePtr msg_detected = cv_bridge::CvImage(std_msgs::Header(), "bgr8", image).toImageMsg();
 
-        double count = 0;
-        double num = maxRect.width * maxRect.height;
-        for (int i = maxRect.x; i < maxRect.x + maxRect.width; ++i)
-        {
-            for (int j = maxRect.y; j < maxRect.y + maxRect.height; ++j) {
-               count += gray.at<uchar>(i, j);
-            }
-        }
+        // double count = 0;
+        // double num = maxRect.width * maxRect.height;
+        // for (int i = maxRect.x; i < maxRect.x + maxRect.width; ++i)
+        // {
+        //     for (int j = maxRect.y; j < maxRect.y + maxRect.height; ++j) {
+        //        count += gray.at<uchar>(i, j);
+        //     }
+        // }
 
-        double mean_value = count / num;
+        // double mean_value = count / num;
 
-        std::cout << mean_value << std::endl;
+        // std::cout << mean_value << std::endl;
 
-        if (mean_value > 115)
-        {
-            pub.publish(msg_detected);
-        }
+        // ROS_INFO("mean_value: %f \n", mean_value);
 
+        // if (mean_value > 115)
+        // {
+        //     pub.publish(msg_detected);
+        // }
+        pub.publish(msg_detected);
         ros::spinOnce();
         loop_rate.sleep();
     }
